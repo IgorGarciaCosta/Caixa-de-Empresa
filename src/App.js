@@ -14,6 +14,7 @@ function App() {
     e.preventDefault()
     if (!name) {//se nada foi digitado, dá um alerta
       //display alert
+      showAlert(true,'danger', 'Digite um valor')
     }
 
     else if (name && isEditing) {
@@ -27,9 +28,13 @@ function App() {
     }
   }
 
+  const showAlert = (show=false, type = '', msg='')=>{
+    setAlert({show, type, msg})
+  }
+
   return <section className="section-center">
     <form className="grocery-form" onSubmit={handleSubmit}>
-      {alert.show && <Alert />}
+      {alert.show && <Alert {...alert} removeAlert = {showAlert}/>}
       <h3>Caixa da Mercearia</h3>
       <div className="form-control">
         <input type="text" className="grocery" placeholder="ex. batata" value={name} onChange={(e) => setName(e.target.value)} />
