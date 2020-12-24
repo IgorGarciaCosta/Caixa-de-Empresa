@@ -68,6 +68,16 @@
   border-radius: 5px;
   margin: 5px;
 }
+.submit-btn:hover{
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+.clear-btn:hover{
+  margin-bottom: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 .grocery{
   border-radius: 5px;
@@ -75,4 +85,26 @@
 
 body{
   background-image: url("./img/back.jpg");
+}
+
+
+
+.alert {
+  margin-bottom: 1rem;
+  height: 1.25rem;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+}
+.alert-danger {
+  color: #721c24;
+  background: #f8d7da;
+}
+.alert-success {
+  color: #155724;
+  background: #d4edda;
 }

@@ -22,6 +22,7 @@ function App() {
     }
     else {// se tudo der certo, adiciona o item
       //show alert
+      showAlert(true, 'success', 'item adicionado à lista')
       const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
       setName('')//isso limpa o input dps de dar submit
@@ -32,9 +33,23 @@ function App() {
     setAlert({show, type, msg})
   }
 
+  const clearList=()=>{
+    showAlert(true, 'danger', 'lista vazia');
+    setList([])
+  }
+
+  const removeItem=(id)=>{
+    showAlert(true, 'danger', 'item removido')
+    setList(list.filter((item)=>item.id!==id))
+    /*Se o id buscado na iteração não bate
+    com o recebido, coloca ele de volta na 
+    nova lista. Se bate, não colocoa ele. */
+  }
+
   return <section className="section-center">
     <form className="grocery-form" onSubmit={handleSubmit}>
-      {alert.show && <Alert {...alert} removeAlert = {showAlert}/>}
+      {alert.show && <Alert {...alert} removeAlert = {showAlert}
+      list={list}/>}
       <h3>Caixa da Mercearia</h3>
       <div className="form-control">
         <input type="text" className="grocery" placeholder="ex. batata" value={name} onChange={(e) => setName(e.target.value)} />
@@ -46,8 +61,8 @@ function App() {
     </form>
     {list.length > 0 &&
       (<div className="grocery-container">
-        <List items={list} />{/*passa a lista como um prop*/}
-        <button className="clear-btn">
+        <List items={list} removeItem={removeItem}/>{/*passa a lista como um prop*/}
+        <button className="clear-btn" onClick={clearList}>
           limpar itens
       </button>
       </div>)}

@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 
-const Alert = ({type, msg, removeAlert})=>{
+const Alert = ({type, msg, removeAlert, list})=>{
     useEffect(()=>{
         const timeout = setTimeout(()=>{
             removeAlert()
         }, 3000)
         return ()=>clearTimeout(timeout)
-    }, [])
+    }, [list])//o list aqui serve pra o time recomeçar dps de qqr mudança na lista
     return<p className={`alert alert=${type}`}>{msg}</p>
 }
 
